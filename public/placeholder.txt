@@ -1,0 +1,3 @@
+Place your 3D model file (e.g., avatar.glb) in this 'public' directory.
+The application is configured to load 'avatar.glb' by default.
+You can find free GLB models on websites like Sketchfab.
