@@ -1,10 +1,23 @@
 import { useFrame } from '@react-three/fiber';
 import { useScroll } from '@react-three/drei';
 import { useControls } from 'leva';
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 import Avatar from './Avatar';
 import FloatingShapes from './FloatingShapes';
+import ErrorBoundary from '../utils/ErrorBoundary';
+
+// A fallback component to show while the model is loading or if it fails
+const AvatarPlaceholder = () => {
+  return (
+    <group scale={1.5} position-y={-1.5}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry />
+        <meshStandardMaterial color="mediumpurple" />
+      </mesh>
+    </group>
+  );
+};
 
 const Experience = () => {
   const data = useScroll();
@@ -52,7 +65,11 @@ const Experience = () => {
       
       <group ref={groupRef}>
         <group ref={avatarRef}>
-          <Avatar />
+          <ErrorBoundary fallback={<AvatarPlaceholder />}>
+            <Suspense fallback={<AvatarPlaceholder />}>
+              <Avatar />
+            </Suspense>
+          </ErrorBoundary>
         </group>
         <FloatingShapes />
       </group>
