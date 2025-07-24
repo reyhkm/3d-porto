@@ -5,7 +5,7 @@ import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 import Avatar from './Avatar';
 import FloatingShapes from './FloatingShapes';
-import ErrorBoundary from '../utils/ErrorBoundary';
+import ErrorBoundary from '../utils/ErrorBoundary.jsx';
 
 // A fallback component to show while the model is loading or if it fails
 const AvatarPlaceholder = () => {
